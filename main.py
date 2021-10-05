@@ -40,15 +40,17 @@ def get_longest_all_primes(lst: list[int]) -> list[int]:
             cont = cont + 1
         else:
             if cont == contMax:
-                for j in range(lst.index(i) - cont, lst.index(i)):
+                for j in range(lst.index(i) - cont - 1, lst.index(i) - 1):
                     print(lst[j])
-                break
+            cont = 0
     if contMax == 0:
         print("Nu exista numere prime in lista!")
 
 
 def main():
 
+    lst = [4, 2, 3, 6, 3, 5, 11, 7, 4]
+    get_longest_all_primes(lst)
 
 if __name__ == '__main__':
     main()
