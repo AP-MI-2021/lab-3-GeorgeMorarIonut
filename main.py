@@ -169,7 +169,7 @@ def main():
         print("1. Citire date")
         print("2. Determinati cea mai lunga subsecventa de numere neprime dintr-o lista")
         print("3. Determinati cea mai lunga subsecventa in care media numerelor este mai mica decat o valoare data.")
-        print("4. Determinati cea mai lunga subsecventa in care toate numerele sunt puteri ale lui k.")
+        print("4. Determinati cea mai lunga subsecventa in care toate numerele sunt puteri ale lui k")
         print("5. Iesire")
 
         optiune = input("Selectati optiune: ")
