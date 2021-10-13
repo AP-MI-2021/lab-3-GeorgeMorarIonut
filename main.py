@@ -124,10 +124,10 @@ def main():
 
         if optiune == "1":
             l = citireLista()
-            average = int(input("Introduceti valoare: "))
         elif optiune == "2":
             print(get_longest_all_not_primes(l))
         elif optiune == "3":
+            average = int(input("Introduceti valoare: "))
             print(get_longest_average_below(l, average))
         elif optiune == "4":
             break
