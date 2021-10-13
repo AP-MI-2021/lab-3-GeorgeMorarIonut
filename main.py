@@ -88,6 +88,12 @@ def testNumbersAverage():
 
 
 def get_longest_average_below(l, average):
+    """
+    Determina cea mai lunga subsecventa in care media numerelor este mai mica decat o valoare data.
+    :param l: o lista de numere
+    :param average: un numar intreg
+    :return: o subsecventa din lista initiala
+    """
     secvMax = []
 
     for i in range(len(l)):
@@ -103,6 +109,49 @@ def test_get_longest_average_below():
     assert get_longest_average_below([678, 4, 5, 678, 2, 4, 6, 9, 432, 456], 10) == [2, 4, 6, 9]
 
 
+def powersOfK (l, k):
+    """
+    Determina daca intr-o lista de numere toate sunt puteri ale lui un numar dat k.
+    :param l: o lista de numere
+    :param k: un numar intreg
+    :return:True daca toate numerele din lista sunt puteri ale lui k sau False in caz contrar.
+    """
+    for i in l:
+        while i % k == 0:
+            i = i // k
+        if i != 1:
+            return False
+    return True
+
+
+def testPowersOfK():
+    assert powersOfK([], 2) is True
+    assert powersOfK([2, 4, 8, 5, 25, 64, 128], 5) is False
+    assert powersOfK([2, 4, 8, 64], 2) is True
+
+
+def get_longest_powers_of_k(l, k):
+    """
+    Determina cea mai lunga subsecventa dintr-o lista de numere in care toate numerele sunt puteri ale lui k.
+    :param l: o lista de numere
+    :param k: un numar intreg
+    :return: cea mai lunga subsecventa din lista data de numere in care toate numerele sunt puteri ale lui k
+    """
+    secvMax = []
+
+    for i in range(len(l)):
+        for j in range(i, len(l)):
+            if powersOfK(l[i: j + 1], k) and len(l[i: j + 1]) > len(secvMax):
+                secvMax = l[i: j + 1]
+    return secvMax
+
+
+def test_get_longest_powers_of_k():
+    assert get_longest_powers_of_k([3, 2, 32, 8, 64, 16, 32, 6, 9, 12], 2) == [2, 32, 8, 64, 16, 32]
+    assert get_longest_powers_of_k([], 5) == []
+    assert get_longest_powers_of_k([3, 12, 5, 17, 18], 2) == []
+
+
 def main():
 
     testPrimeFunction()
@@ -110,6 +159,8 @@ def main():
     testLongestNotPrimesFunction()
     testNumbersAverage()
     test_get_longest_average_below()
+    testPowersOfK()
+    test_get_longest_powers_of_k()
 
 
     l = []
@@ -118,7 +169,8 @@ def main():
         print("1. Citire date")
         print("2. Determinati cea mai lunga subsecventa de numere neprime dintr-o lista")
         print("3. Determinati cea mai lunga subsecventa in care media numerelor este mai mica decat o valoare data.")
-        print("4. Iesire")
+        print("4. Determinati cea mai lunga subsecventa in care toate numerele sunt puteri ale lui k.")
+        print("5. Iesire")
 
         optiune = input("Selectati optiune: ")
 
@@ -127,9 +179,12 @@ def main():
         elif optiune == "2":
             print(get_longest_all_not_primes(l))
         elif optiune == "3":
-            average = int(input("Introduceti valoare: "))
+            average = int(input("Introduceti valoare average: "))
             print(get_longest_average_below(l, average))
         elif optiune == "4":
+            k = int(input("Introduceti valoare k: "))
+            print(get_longest_powers_of_k(l, k))
+        elif optiune == "5":
             break
         else:
             print("Optiune gresita! Selectati alta optiune.")
